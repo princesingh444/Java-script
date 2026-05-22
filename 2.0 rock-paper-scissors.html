@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors 2.0</title>
+    
+    <style>
+        /* CSS: Design aur Layout ke liye */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .game-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .btn-group {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.2s;
+            color: white;
+        }
+
+        /* Alag-alag buttons ke colors */
+        .rock-btn { background-color: #e74c3c; }
+        .paper-btn { background-color: #3498db; }
+        .scissors-btn { background-color: #f1c40f; color: #333; }
+
+        button:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <h2>Rock, Paper, Scissors</h2>
+        <p>Choose your move:</p>
+
+        <div class="btn-group">
+            <button class="rock-btn" onclick="playGame('Rock')">Rock</button>
+            <button class="paper-btn" onclick="playGame('Paper')">Paper</button>
+            <button class="scissors-btn" onclick="playGame('Scissors')">Scissors</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript: Sara logic yahan ek function mein hai
+        function playGame(userMove) {
+            const randomNumber = Math.random();
+            let computerMove = '';
+
+            // Computer Move Choose Karna
+            if (randomNumber >= 0 && randomNumber < 1/3) {
+                computerMove = 'Rock';
+            } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+                computerMove = 'Paper';
+            } else {
+                computerMove = 'Scissors';
+            }
+
+            let result = '';
+
+            // Rock ke liye logic
+            if (userMove === 'Rock') {
+                if (computerMove === 'Rock') result = 'Tie.';
+                else if (computerMove === 'Paper') result = 'You lose.';
+                else if (computerMove === 'Scissors') result = 'You win!';
+            } 
+            // Paper ke liye logic
+            else if (userMove === 'Paper') {
+                if (computerMove === 'Rock') result = 'You win!';
+                else if (computerMove === 'Paper') result = 'Tie.';
+                else if (computerMove === 'Scissors') result = 'You lose.';
+            } 
+            // Scissors ke liye logic
+            else if (userMove === 'Scissors') {
+                if (computerMove === 'Rock') result = 'You lose.';
+                else if (computerMove === 'Paper') result = 'You win!';
+                else if (computerMove === 'Scissors') result = 'Tie.';
+            }
+
+            // Final Result Alert
+            alert(`You picked: ${userMove}\nComputer picked: ${computerMove}\n\nResult: ${result}`);
+        }
+    </script>
+
+</body>
+</html>
